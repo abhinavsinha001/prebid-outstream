@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Standalone VAST Outstream Ad</title>
+  <style>
+    #ad-container {
+      width: 640px;
+      height: 360px;
+      margin: 20px auto;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<div id="ad-container"></div>
+<!-- Include the renderer that is built as dist/bundle.js -->
+<script src="renderer.js"> 
+</script>
+
+<script>
+  // Create a mock "bid" object with the VAST tag and placement info
+  const bid = {
+        id: 'C4722BF1-599B-4CFC-A018-6CF7814DTEST',
+        impid: '2fcbd3083f4088',
+        price: 1.26,
+        vastUrl: 'https://playertest.longtailvideo.com/vast-30s-ad.xml',// 'sample-vast.xml',
+        adomain: ['news.americanexpress.com'],
+        cid: '16939',
+        crid: '12345',
+        ext: {
+            dspid: 6,
+            advid: 5863
+        }
+    };
+    const elementId = 'ad-container';
+    const genericConfig = {
+                    width: 640,
+                    height: 480,
+                    vastTimeout: 5000,
+                    maxAllowedVastTagRedirects: 3,
+                    allowVpaid: false,
+                    autoPlay: true,
+                    preload: true,
+                    mute: false,
+                    adText: 'This is sample adtext.'
+                }
+ window.outstreamPlayer.player(bid, elementId, genericConfig);
+</script>
+
+</body>
+</html>
+
