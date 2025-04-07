@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>728x250 Sample Ad</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+    }
+
+    .ad-bar {
+      display: flex;
+      width: 728px;
+      height: 250px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .video-container {
+      width: 300px;
+      height: 250px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #ad-container {
+      width: 300px;
+      height: 250px;
+    }
+
+    .product-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    .product-info img {
+      height: 120px;
+      border-radius: 4px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 12px;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .title {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .add-btn {
+      background-color: #0071dc;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 12px;
+    }
+
+    .add-btn:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ad-bar">
+    <div class="video-container">
+      <div id="ad-container"></div>
+    </div>
+    <div class="product-info">
+      <img src="https://placehold.co/100x120?text=Sample" alt="Sample Product" />
+      <div class="details">
+        <div class="price">$9.99</div>
+        <div class="title">Sample Product<br>Net Wt. 7 oz</div>
+      </div>
+      <button class="add-btn">+ Add</button>
+    </div>
+  </div>
+
+  <!-- Include Prebid renderer -->
+  <script src="renderer.js"></script>
+
+  <script>
+    const bid = {
+      id: 'C4722BF1-599B-4CFC-A018-6CF7814DTEST',
+      impid: '2fcbd3083f4088',
+      price: 1.26,
+      vastUrl: 'https://playertest.longtailvideo.com/vast-30s-ad.xml',
+      adomain: ['example.com'],
+      cid: '1234',
+      crid: '5678',
+      ext: {
+        dspid: 6,
+        advid: 5863
+      }
+    };
+
+    const elementId = 'ad-container';
+    const config = {
+      width: 300,
+      height: 250,
+      vastTimeout: 5000,
+      maxAllowedVastTagRedirects: 3,
+      allowVpaid: false,
+      autoPlay: true,
+      preload: true,
+      mute: false,
+      adText: 'This is a sample ad.'
+    };
+
+    window.outstreamPlayer.player(bid, elementId, config);
+  </script>
+
+</body>
+</html>
